@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Who are you - Math Pirates</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/main.css">
+    <style>
+        .message > p{
+            color: red;
+        }
+        .user{
+            border-radius: 50%;
+        }
+        #avatar{
+            border-radius: 50%;
+            margin-top: 20px; 
+            align-items: flex-start;  
+        }
+        .hide{
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body onload="mainFunction()">
+
+    <!-- Head -->
+    <div class="head">
+        <h1 class="homeHead">
+            Math <span class="iconContainer"><img class="piIcons" src="./Img/pisymbol.png"></span>rates
+        </h1>
+    </div>
+
+    <div class="container">
+        <!-- header -->
+        <h1 class="home-section-head">
+            Who are you ?
+        </h1>
+        <!-- body form -->
+        <form action="./math.html">
+            <div class="home-section-form">
+                <div class="form-group-a">
+                    <input required id="firstName" type="text" placeholder="First Name">
+                    <input required id="middleName" type="text" placeholder="Middle Name">
+                    <input required id="lastName" type="text" placeholder="Last Name">
+                </div>
+                <div class="form-group-b">
+                    <div>
+                        <input required id="dateofbirth" type="date" value="2007-01-01" placeholder="Date of Birth">
+                    </div>
+                    <div>
+                        <select required name="gender" id="genderdropdown">
+                            <option value="">Gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="message">
+                    <p>
+                    </p>
+                    <input required hidden type="text" id="age" pattern="9|10|11|12">
+                </div>
+                <br>
+                <!-- bottom button -->
+                <div class="identify-grid">
+                    <div>
+                        <input type="file" onchange="previewFile()"><br>
+                        <img class="user" height="150" width="150" alt="Image preview...">
+                    </div>
+                    <div style="color: black; font-size: 80px; display: flex; align-items: center;" id="arrow">
+                        <i class="fas fa-arrow-right hide"></i>
+                    </div>
+                    <div>
+                        <img class="hide" src="https://api.adorable.io/avatars/285/abott@adorable.png" class="user" id="avatar"
+                            height="150" width="150">
+                    </div>
+                </div>
+                <div class="bottom-grid">
+                    <div class="home-submit-btn">
+                        <input id="submit" type="submit" value="Let's Go">
+                    </div>
+                    <div class="bottom-img">
+                        <img width="120" height="120" src="./Img/BirdPirate.png">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script asyn>
+
+        function previewFile() {
+            var preview = document.querySelector('.user'); //selects the query named img
+            var file = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader = new FileReader();
+
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+                getAvatar();
+            } else {
+                preview.src = "";
+            }
+        }
+
+        function getAvatar() {
+            var firstName = document.querySelector("#firstName");
+            var arrow = document.querySelector(".fa-arrow-right");
+            var avatar = `https://api.adorable.io/avatars/285/${firstName}@adorable.png`
+
+            arrow.classList.remove("hide");
+            var addAvatar = document.querySelector("#avatar");
+            addAvatar.src = avatar
+            addAvatar.classList.remove("hide")
+            // set the avatar
+
+        }
+
+
+        function mainFunction() {
+            document.querySelector("#submit").addEventListener("click", function (e) {
+                var dateOfBirth = document.querySelector("#dateofbirth");
+                var currentYear = new Date().getFullYear();
+                var birthYear = new Date(dateOfBirth.value).getFullYear();
+
+                var age = currentYear - birthYear;
+
+
+                document.querySelector("#age").value = age;
+                if (validateAge(age)) {
+                    storeData(age)
+                }
+            })
+
+
+            function validateAge(age) {
+                var message = document.querySelector('.message > p');
+                if (age > 12) {
+                    message.innerHTML = "You are too old for this site";
+                }
+                else if (age < 9) {
+                    message.innerHTML = "You are too young for this site";
+                }
+                else {
+                    return true;
+                }
+            }
+
+            function storeData(age) {
+                // collecting info on the page
+                var firstName = document.querySelector("#firstName");
+                var lastName = document.querySelector("#lastName");
+                var middleName = document.querySelector("#middleName");
+                var gender = document.querySelector("#genderdropdown");
+
+
+                var UserData = {
+                    fName: firstName.value,
+                    lName: lastName.value,
+                    mName: middleName.value,
+                    age: age,
+                    gender: gender.value
+                }
+
+                // store date in the browser session 
+                sessionStorage.setItem("User", JSON.stringify(UserData));
+            }
+        } 
+    </script>
+</body>
+
+</html>

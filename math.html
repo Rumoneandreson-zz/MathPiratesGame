@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up - Math Pirates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSS/main.css">
+
+    <style>
+        .button-container {
+            width: 40%;
+            margin: auto;
+        }
+
+        input[type=text]{
+            font-size: 50px;
+            width: 80px;
+            /* text-align: center; */
+            padding-left: 1em;
+        }
+
+        .topic-button,
+        .level-button,
+        .answer-check {
+            margin: 0.5em;
+            height: 50px;
+            width: 100% !important;
+            background: #2b9720
+        }
+
+        .answer-check {
+            width: 40% !important; 
+        }
+
+        #avatar {
+            cursor: pointer;
+        }
+
+        .username {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .topics-section-head {
+            text-align: left;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .question-container {
+            font-size: 50px;
+            text-align: center;
+            color: #333;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr)
+        }
+
+        .result-container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .result-container>div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .result-container>div>p{
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <h1 class="homeHead animated zoomIn">
+            Math <span class="iconContainer"><img class="piIcons" onclick="displayAccount" src="./Img/pisymbol.png"></span>rates
+        </h1>
+    </div>
+    <div class="container">
+        <!-- header -->
+        <div class="main-box">
+            <div class="header">
+                <h1 class="topics-section-head animated wobble">
+                    Choose Your Battle
+                </h1>
+
+                <div class="username" style="display: grid; grid-template-columns: 2fr 1fr; grid-gap: 1em">
+                    <p>
+                        Hello, <span class="userFirstName"></span>
+                    </p>
+                    <img onclick="userAccount()" style="border-radius: 50%" src="" id="avatar" height="40" width="40">
+                </div>
+            </div>
+            <!-- body -->
+
+            <form>
+                <div class="Home-math-grid">
+                    <div>
+                        <h3>
+                            Select an operation
+                        </h3>
+                        <input type="radio" onchange="changeLevel()" class="operation" name="operation" checked>
+                        Addition
+                        <br>
+                        <input type="radio" onchange="changeLevel()" class="operation" name="operation"> Subtraction
+                        <br>
+                        <input type="radio" onchange="changeLevel()" class="operation" name="operation">
+                        Multiplication
+                        <br>
+                        <input type="radio" onchange="changeLevel()" class="operation" name="operation"> Division
+                    </div>
+                    <div class="selectionDiv">
+                        <h3>
+                            Select a level
+                        </h3>
+                        <select name="levels" class="levelSelect">
+                            <option class="level" value="1" selected>level 1</option>
+                            <option class="level" value="2" disabled>level 2</option>
+                            <option class="level" value="3" disabled>level 3</option>
+                            <option class="level" value="4" disabled>level 4</option>
+                            <option class="level" value="5" disabled>level 5</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <button class="topic-button Begin">Begin</button>
+            </form>
+        </div>
+
+        <div class="Question-box hidden">
+            <div class="header">
+                <h1 class="topics-section-head">
+                    Question <span class="currentQuestion"></span>
+                </h1>
+            </div>
+            <!-- body -->
+            <div class="question-container">
+                <div class="fNum">
+                    <span class="animated zoomIn"></span>
+                </div>
+                <div class="oper">
+                    <span class="animated zoomIn"></span>
+                </div>
+                <div class="sNum">
+                    <span class="animated zoomIn"></span>
+                </div>
+                <div>
+                    <span>=</span>
+                </div>
+                <div class="result">
+                    <input type="text" value="" required>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- submit button -->
+            <div class="buttonSection">
+                <button class="hidebtn"></button>
+            </div>
+        </div>
+
+        <div class="account-box hidden">
+            <div>
+                <center>
+                    <h1 class="results-section-head">
+                        Account
+                    </h1>
+                    <h3>
+                        User: <span id=name></span>
+                    </h3>
+                    <div>
+                        <img src="" id="accountavatar" height="100" width="100" style="border-radius: 50%">
+                    </div>
+                </center>
+                <!-- user details -->
+            </div>
+            <!-- body -->
+            <div>
+                <div class="user-details">
+                    <ul>
+                        <li style="list-style: none; font-size: 18px;">Age: <span id="age"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- submit button -->
+            <button class="home">Go Home</button>
+        </div>
+
+        <div class="result-box hidden">
+            <div class="header">
+                <h1 class="results-section-head">
+                    Results
+                </h1>
+            </div>
+            <!-- body -->
+            <div class="result-container">
+                <div>
+                    <h2>
+                        You Got:
+                    </h2>
+                </div>
+                <div>
+                    <p class="bigNumber animated zoomIn">
+                        <span></span>%
+                    </p>
+                </div>
+            </div>
+            <p class="message" style="font-size: 20px; color: #2b9720"></p>
+            <br>
+            <br>
+            <!-- submit button -->
+            <button class="
+                answer-check finish">Finish</button>
+        </div>
+    </div>
+    <script>
+        var useridentity = JSON.parse(sessionStorage.getItem("User"));
+
+        var putUserName = document.querySelector(".userFirstName").innerHTML = useridentity.fName;
+
+        getAvatar()
+
+        function getAvatar() {
+            var firstName = document.querySelector("#firstName");
+            var avatar = `https://api.adorable.io/avatars/285/${useridentity.fName}@adorable.png`
+            var accountavatar = document.querySelector("#accountavatar")
+            var addAvatar = document.querySelector("#avatar");
+
+            accountavatar.src = avatar
+
+            addAvatar.src = avatar
+            addAvatar.classList.remove("hide")
+            // set the avatar
+        }
+
+
+
+        function userAccount() {
+            const { fName, lName, mName, age } = useridentity
+
+            // change to account card
+            document.querySelector("#name").innerHTML = `${fName} ${mName} ${lName}`
+            document.querySelector("#age").innerHTML = `${age}`
+
+            // display user info
+            document.querySelector(".main-box").classList.add("hidden");
+            document.querySelector(".account-box").classList.remove("hidden");
+        }
+
+
+    </script>
+    <script async src="./JS/main.js"></script>
+</body>
+
+</html>

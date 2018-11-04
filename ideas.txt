@@ -1,0 +1,51 @@
+mathematical practice site
+
+activity choice
+each has 5 levels
+\\levels are represented as clickable boxes
+
+addition
+multiplication
+subtraction
+division
+
+
+Generate 2 numbers
+
+each level has 15 questions
+
+Criteria
+index.html collec user information
+
+
+HOW JOSH BOUT TO DO THIS 
+RMR 
+
+D.R.Y
+K.I.S.S
+
+
+HOME
+user enters information on the home page index
+	store information entered by user in local storage and go on to selection screen
+
+
+SELECTION
+user select a feild in which the questions will be generated
+	each feild is a separate page
+
+
+PASS/FAIL
+user will either pass or fail pass is 80%
+	another page is used to check the results and determine if the student passed or failed in order to unlock the next level
+
+
+
+
+
+all of this is mainly based around the use of js
+index page internal js
+
+external js connected to other pages will be used 
+local storage for passing data to other pages or other storage methods in js
+
