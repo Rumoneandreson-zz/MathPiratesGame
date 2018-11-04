@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Who are you - Math Pirates</title>
+    <link rel="icon" href="./Img/BirdPirate.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -74,23 +75,20 @@
                 <div class="identify-grid">
                     <div>
                         <input type="file" onchange="previewFile()"><br>
-                        <img class="user" height="150" width="150" alt="Image preview...">
+                        <img class="user" height="120" width="120">
                     </div>
                     <div style="color: black; font-size: 80px; display: flex; align-items: center;" id="arrow">
                         <i class="fas fa-arrow-right hide"></i>
                     </div>
                     <div>
                         <img class="hide" src="https://api.adorable.io/avatars/285/abott@adorable.png" class="user" id="avatar"
-                            height="150" width="150">
+                            height="120" width="120">
                     </div>
                 </div>
-                <div class="bottom-grid">
-                    <div class="home-submit-btn">
-                        <input id="submit" type="submit" value="Let's Go">
-                    </div>
-                    <div class="bottom-img">
-                        <img width="120" height="120" src="./Img/BirdPirate.png">
-                    </div>
+                <br>
+                <br>
+                <div class="home-submit-btn">
+                    <input id="submit" type="submit" value="Let's Go">
                 </div>
             </div>
 
@@ -99,6 +97,7 @@
     </div>
 
     <script asyn>
+
 
         function previewFile() {
             var preview = document.querySelector('.user'); //selects the query named img
@@ -119,7 +118,7 @@
         }
 
         function getAvatar() {
-            var firstName = document.querySelector("#firstName");
+            var firstName = document.querySelector("#firstName").value;
             var arrow = document.querySelector(".fa-arrow-right");
             var avatar = `https://api.adorable.io/avatars/285/${firstName}@adorable.png`
 
