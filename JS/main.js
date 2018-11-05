@@ -33,7 +33,6 @@ var secondNum;
 
 document.querySelector(".Begin").addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(level)
     // Sets up for new start
     // Remove Button that is there 
     removeCurrentButton()
@@ -66,12 +65,13 @@ function checkAnswer() {
     // check the answer
     if (UserAnswer == answer) {
         // increment counter for correct ansers
+
         countCorrect++;
+        console.log("number correct: " + countCorrect)
     }
-    quesNum++;
 
     // Check the amount of questions asked
-    if (quesNum == 15) {
+    if (quesNum == 14) {
         // accumulate student result
         answerReport()
         // Remove Button that is there 
@@ -79,6 +79,8 @@ function checkAnswer() {
         // Add new Button
         AddandCreateButton("Get Result", 1)
     }
+
+    quesNum++;
 }
 
 // removes the check button from the page
@@ -129,7 +131,10 @@ function answerReport() {
     if (countCorrect == 0) {
         grade = 0
     } else {
-        grade = Math.floor(Math.round(countCorrect / quesNum));
+        console.log("number correct sum" + countCorrect);
+        console.log("number of questions" + quesNum)
+        grade = Math.floor(Math.round(countCorrect / quesNum * 100));
+        console.log(grade)
     }
 
     if (grade > 80) {
@@ -203,6 +208,7 @@ function ShowNumberOnCard() {
 finish.addEventListener("click", () => {
     resultBox.classList.add("hidden")
     home.classList.remove("hidden")
+    countCorrect = 0;
 })
 
 document.querySelector(".home").addEventListener("click", () => {
@@ -213,7 +219,6 @@ document.querySelector(".home").addEventListener("click", () => {
 
 
 function CalculationsAndAnswer() {
-    console.log("here")
     switch (level) {
         case '1':
             while (true) {
@@ -341,7 +346,7 @@ function updateLevel(opCode) {
     changeLevel()
 }
 
-function changeLevel(operChoice) {
+function changeLevel() {
 
     chooseOperation();
 
@@ -371,6 +376,7 @@ function changeLevel(operChoice) {
         newSelect.add(option)
     }
 
+    // disable the dropdown list if the user completes all 5 levels
     if (newSelect.length > 5) {
         newSelect[5].parentNode.removeChild(newSelect[5])
         document.querySelector(".operation").disabled = true;
